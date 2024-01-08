@@ -63,11 +63,41 @@ const userSchema= new Schema({
     }
 )
 
-userSchema.pre("save",async function(next){
+userSchema.pre("save",async function (next)
+{
+    /* 
+        Here in pre hook nothing but function
+        we do not use CallBack Funcion ()=>{}
+        beacause we are not aware of context in 
+        callback function context means --> this. <--
+
+
+        and use async because the Encryption takes time 
+
+        and used next beacause this is a middleware function 
+        so after saving we call next middleware function  
+
+        so every time we change any piece of the userSchema 
+        the password hashes itself so 
+
+        we used (!this.isModified('password'))
+        this means if password is not modified then 
+        go to next 
+
+        else 
+            encypt the password
+    */
     if(!this.isModified('password')) return next();
     this.password=bcrypt.hash(this.password,10)
     next()
 })
+
+
+userSchema.methods.isPasswordCorrect = async function(password)
+{
+    return await bcrypt.compare(password,this.password)
+}
+
 export default User = mongoose.model("User",userSchema)
 /* Here the Important Thing is we Export this thing 
    and We use this in other files Rather than Getting it Mongodb Database

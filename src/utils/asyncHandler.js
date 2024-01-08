@@ -2,10 +2,7 @@
     There are 2 ways to implement asyncHandler 
     1. Using Try catch 
     2. Promises
-
-*/
-
-/* 
+ 
 
     const express = require('express');
 const app = express();
@@ -84,7 +81,7 @@ app.listen(port, () => {
        then we can set 
        console.log(err.stack);
        res.status(500).send('Something went wrong!'); 
-       
+
 */
 
 const asyncHandler = (requestHandler)=>{
