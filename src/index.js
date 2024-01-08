@@ -33,7 +33,7 @@ databaseConnection()
 
 // /* 
 // First approach 
-// here we used it Because sometimes we some errors may occur and 
+// here we used it Because sometimes  some errors may occur and 
 //     we may not aware of it so we  use express listeners and 
 //     listen to those errors and try to resolve it 
 
