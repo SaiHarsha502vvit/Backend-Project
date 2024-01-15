@@ -1,0 +1,6 @@
+Http Status Code 
+  --> 1xx Information Code 
+  --> 2xx Sucess Code
+  --> 3xx Redirection 
+  --> 4xx Client error 
+  --> 5xx Server error
