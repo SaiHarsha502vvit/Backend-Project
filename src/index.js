@@ -1,15 +1,13 @@
 import { Error } from 'mongoose';
 import databaseConnection from './db/db.js';
 import dotenv from 'dotenv'
-import express from 'express'
+import {app} from './app.js'
 
 dotenv.config({
     path:'./env' /* we used this method inorder to load the env variables before execution of any file or code 
                     so that env variables are available for every file */
 })
 
-
-const app=express()
 
 databaseConnection()
 .then(()=>{

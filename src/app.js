@@ -1,6 +1,7 @@
 import express from 'express'
 import cors from  'cors'
 import cookieParser from 'cookie-parser'
+
 /**
  * Express application instance.
  * @type {import('express').Express}
@@ -29,5 +30,16 @@ app.use(express.urlencoded({extended:true}))  /* This is used to ensure that our
                                                   nested objects */
 app.use(express.static("public")) // we use this inorder to store files of some pic, pdfs    etc and all that on server use some folder here we have given that folder name 
 app.use(cookieParser())
+
+//routes 
+import userRouter from './routes/user.routes.js'
+
+// Routes declartion 
+app.use("/api/v1/users",userRouter) /*  
+                                        this is a middleware whenever the user goes to this URL
+                                        then userRouter gets Activated and pass the control to 
+                                        usercontoller {registerUser} method 
+                                    */
+// http://localhost:8000/api/v1/users/register
 
 export {app}
