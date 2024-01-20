@@ -9,8 +9,8 @@ const userSchema= new Schema({
         lowercase:true,
         trim:true,
         index:true
-    },
-    username:{
+    },  
+    email:{
         type:String,
         required:true,
         unique:true,
@@ -88,7 +88,7 @@ userSchema.pre("save",async function (next)
             encypt the password
     */
     if(!this.isModified('password')) return next();
-    this.password=bcrypt.hash(this.password,10)
+    this.password= await bcrypt.hash(this.password,10)
     next()
 })
 
@@ -126,7 +126,7 @@ userSchema.methods.generateRefreshToken= function(){
     )
 }
 
-export default User = mongoose.model("User",userSchema)
+export const    User = mongoose.model("User",userSchema)
 /* Here the Important Thing is we Export this thing 
    and We use this in other files Rather than Getting it Mongodb Database
    and In the Mongodb Database the DataBase name Will be in 
